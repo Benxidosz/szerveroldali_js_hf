@@ -1,0 +1,33 @@
+Routes:
+Place Routes
+get     '/'                             kirendereli a helyek (place) listáját (index.html)
+
+get     '/place/create'                 kirendereli az új hely létrehozó formot (new_place.html)
+post    '/place/create'                 ellenőrzi és rögzíti az újonnan felvett hely adatait, majd átirányítra a '/'
+                                        route-ra
+
+get     '/place/modify/:placeId'        kirendereli az új hely létrehozó formot (new_place.html) kitöltve a :placeId
+                                        id-jú
+                                        hely adataival.
+post    '/place/modify/:placeId'        ellenőrzi és rögzíti a :placeId id-jú hely módosított adatait, majd átirányítra
+                                        '/' route-ra
+
+get     '/place/delete/:placeId'        kitörli a :placeId id-jú helyet és a hozzátartozó szetteket, majd átirányítra
+                                        a '/' routera
+
+get     '/place/stats/:placeId'         kirendereli a :placeId id-jú hely statisztikáit (stats.html)
+---
+Sett Routes
+
+get     '/set/:placeId'                 kirendereli a :placeId id-jú helyen található szetteket (sett) (sett_list.html)
+
+get     '/set/:placeId/create'          kirendereli az új szett létrehozó formot (new_sett.html)
+post    '/set/:placeId/create'          ellenőrzi és rögzíti az újonnan felvett szett adatait, majd átirányítra a
+                                        '/set/:placeId' route-ra
+
+get     '/set/:placeId/modify/:settId'  kirendereli az új szett létrehozó formot (new_sett.html) kitöltve a :settId
+                                        id-jú
+post    '/set/:placeId/modify/:settId'  ellenőrzi és rögzíti a :settId id-jú szett módosított adatait, majd átirányítra
+                                        '/set/:placeId' route-ra
+
+get     '/set/:placeId/delete/:settId'  kitörli a :settId id-jú szettet, majd átirányítra a '/set/:placeId' routera
