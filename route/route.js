@@ -7,13 +7,15 @@ const savePlaceMW = require('../middleware/place/savePlaceMW');
 const delPlaceMW = require('../middleware/place/delPlaceMW');
 
 const getSettsMW = require('../middleware/sett/getSettsMW');
-const countSettsMW = require('../middleware/sett/countSettsMW');
 const checkSettsMW = require('../middleware/sett/checkSettsMW');
-const countValidSettsMW = require('../middleware/sett/countValidSettsMW');
 const saveSettMW = require('../middleware/sett/saveSettMW');
 const getSettMW = require('../middleware/sett/getSettMW');
 const delSettMW = require('../middleware/sett/delSettMW');
 
+/**
+ * Regisztrálja a route-okat.
+ * @param app
+ */
 module.exports = function (app) {
     const objRepo = {};
 
@@ -36,9 +38,7 @@ module.exports = function (app) {
     app.get('/place/stats/:placeId',
         getPlaceMW(objRepo),
         getSettsMW(objRepo),
-        countSettsMW(objRepo),
         checkSettsMW(objRepo),
-        countValidSettsMW(objRepo),
         renderMW(objRepo, 'stats'));
 
     app.get('/sett/:placeId',
@@ -71,6 +71,5 @@ module.exports = function (app) {
     app.get('/',
         getPlacesMW(objRepo),
         getSettsMW(objRepo),
-        countSettsMW(objRepo),
         renderMW(objRepo, 'index'));
 }
