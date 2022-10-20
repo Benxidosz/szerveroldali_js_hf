@@ -6,8 +6,6 @@
  */
 module.exports = function (objRepo, viewName) {
     return function (req, res, next) {
-        console.log('render: ' + viewName);
-        res.end('Template: ' + viewName);
+        res.render(viewName, res.locals.params);
     };
-
 };

@@ -20,13 +20,13 @@ module.exports = function (app) {
     const objRepo = {};
 
     app.get('/place/create',
-        renderMW(objRepo, 'new_place'));
+        renderMW(objRepo, 'place/new_place'));
     app.post('/place/create',
         savePlaceMW(objRepo),
         redirectMW(objRepo, '/'));
     app.get('/place/modify/:placeId',
         getPlaceMW(objRepo),
-        renderMW(objRepo, 'new_place'));
+        renderMW(objRepo, 'place/new_place'));
     app.post('/place/modify/:placeId',
         getPlaceMW(objRepo),
         savePlaceMW(objRepo),
@@ -39,37 +39,37 @@ module.exports = function (app) {
         getPlaceMW(objRepo),
         getSettsMW(objRepo),
         checkSettsMW(objRepo),
-        renderMW(objRepo, 'stats'));
+        renderMW(objRepo, 'place/stats'));
 
     app.get('/sett/:placeId',
         getPlaceMW(objRepo),
         getSettsMW(objRepo),
         checkSettsMW(objRepo),
-        renderMW(objRepo, 'sett_list'));
-    app.get('/set/:placeId/create',
+        renderMW(objRepo, 'sett/sett_list'));
+    app.get('/sett/:placeId/create',
         getPlaceMW(objRepo),
-        renderMW(objRepo, 'new_sett'));
-    app.post('/set/:placeId/create',
+        renderMW(objRepo, 'sett/new_sett'));
+    app.post('/sett/:placeId/create',
         getPlaceMW(objRepo),
         saveSettMW(objRepo),
-        redirectMW(objRepo, '/set/:placeId'));
-    app.get('/set/:placeId/modify/:settId',
+        redirectMW(objRepo, '/sett/:placeId'));
+    app.get('/sett/:placeId/modify/:settId',
         getPlaceMW(objRepo),
         getSettMW(objRepo),
-        renderMW(objRepo, 'new_sett'));
-    app.post('/set/:placeId/modify/:settId',
+        renderMW(objRepo, 'sett/new_sett'));
+    app.post('/sett/:placeId/modify/:settId',
         getPlaceMW(objRepo),
         getSettMW(objRepo),
         saveSettMW(objRepo),
-        redirectMW(objRepo, '/set/:placeId'));
-    app.get('/set/:placeId/delete/:settId',
+        redirectMW(objRepo, '/sett/:placeId'));
+    app.get('/sett/:placeId/delete/:settId',
         getPlaceMW(objRepo),
         getSettMW(objRepo),
         delSettMW(objRepo),
-        redirectMW(objRepo, '/set/:placeId'));
+        redirectMW(objRepo, '/sett/:placeId'));
 
     app.get('/',
         getPlacesMW(objRepo),
         getSettsMW(objRepo),
-        renderMW(objRepo, 'index'));
+        renderMW(objRepo, 'place/place_list'));
 }

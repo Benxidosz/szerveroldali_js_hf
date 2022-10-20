@@ -1,0 +1,22 @@
+<%- include('../header') -%>
+        <h1>Add Place</h1>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="iName">
+            </div>
+            <div class="mb-3">
+                <label for="floor" class="form-label">Floor</label>
+                <input type="number" class="form-control" id="floor" name="iNumber">
+            </div>
+            <div class="mb-3">
+                <label for="room" class="form-label">Room</label>
+                <input type="number" class="form-control" id="room" name="iFloor">
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Room</label>
+                <input type="text" class="form-control" id="type" name="iType">
+            </div>
+            <button type="submit" class="btn btn-primary" name="sFinish">Finish</button>
+        </form>
+<%- include('../footer') -%>

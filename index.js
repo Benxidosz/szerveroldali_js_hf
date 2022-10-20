@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.use(express.static('static'));
+app.use('/static', express.static('static'));
+
+app.set('view engine', 'ejs');
 
 require('./route/route')(app);
 
