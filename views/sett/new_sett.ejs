@@ -1,26 +1,35 @@
 <%- include('../header') -%>
-    <h1>Add Set</h1>
+    <h1><% if (typeof sett === 'undefined') { %>
+            New
+        <% }else{ %>
+            Modify
+        <% } %> Set</h1>
     <form method="POST">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="iName">
+            <input type="text" class="form-control" id="name" name="iName"
+                   value="<%= (typeof sett === "undefined") ? '' : sett.name %>">
         </div>
         <div class="mb-3">
             <label for="color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="color" name="iColor">
+            <input type="text" class="form-control" id="color" name="iColor"
+                   value="<%= (typeof sett === "undefined") ? '' : sett.color %>">
         </div>
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
-            <input type="text" class="form-control" id="type" name="iType">
+            <input type="text" class="form-control" id="type" name="iType"
+                   value="<%= (typeof sett === "undefined") ? '' : sett.type %>">
         </div>
         <div class="mb-3">
             <label for="cups" class="form-label">Cups</label>
-            <input type="number" class="form-control" id="cups" name="iCups">
+            <input type="number" class="form-control" id="cups" name="iCups"
+                   value="<%= (typeof sett === "undefined") ? '' : sett.cups %>">
         </div>
         <div class="mb-3">
             <label for="balls" class="form-label">Balls</label>
-            <input type="number" class="form-control" id="balls" name="iBalls">
+            <input type="number" class="form-control" id="balls" name="iBalls"
+                   value="<%= (typeof sett === "undefined") ? '' : sett.balls %>">
         </div>
-        <button type="submit" class="btn btn-primary" name="sFinish">Finish</button
+        <button type="submit" class="btn btn-primary" name="sFinish">Finish</button>
     </form>
 <%- include('../footer') -%>

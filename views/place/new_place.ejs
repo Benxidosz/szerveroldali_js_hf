@@ -1,22 +1,32 @@
 <%- include('../header') -%>
-        <h1>Add Place</h1>
-        <form method="POST">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="iName">
-            </div>
-            <div class="mb-3">
-                <label for="floor" class="form-label">Floor</label>
-                <input type="number" class="form-control" id="floor" name="iNumber">
-            </div>
-            <div class="mb-3">
-                <label for="room" class="form-label">Room</label>
-                <input type="number" class="form-control" id="room" name="iFloor">
-            </div>
-            <div class="mb-3">
-                <label for="type" class="form-label">Room</label>
-                <input type="text" class="form-control" id="type" name="iType">
-            </div>
-            <button type="submit" class="btn btn-primary" name="sFinish">Finish</button>
-        </form>
+<h1>
+    <% if (typeof place === 'undefined') { %>
+        New
+    <% }else{ %>
+        Modify
+    <% } %>
+    Place</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="iName"
+               value="<%= (typeof place === "undefined") ? '' : place.name %>">
+    </div>
+    <div class="mb-3">
+        <label for="floor" class="form-label">Floor</label>
+        <input type="number" class="form-control" id="floor" name="iFloor"
+               value="<%= (typeof place === "undefined") ? '' : place.floor %>">
+    </div>
+    <div class="mb-3">
+        <label for="room" class="form-label">Room</label>
+        <input type="number" class="form-control" id="room" name="iRoom"
+               value="<%= (typeof place === "undefined") ? '' : place.room %>">
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label">Type</label>
+        <input type="text" class="form-control" id="type" name="iType"
+               value="<%= (typeof place === "undefined") ? '' : place.type %>">
+    </div>
+    <button type="submit" class="btn btn-primary">Finish</button>
+</form>
 <%- include('../footer') -%>

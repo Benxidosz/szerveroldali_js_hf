@@ -12,29 +12,35 @@ const saveSettMW = require('../middleware/sett/saveSettMW');
 const getSettMW = require('../middleware/sett/getSettMW');
 const delSettMW = require('../middleware/sett/delSettMW');
 
+const PlaceModel = require('../models/place');
+const SettModel = require('../models/sett');
+
 /**
  * Regisztrálja a route-okat.
  * @param app
  */
 module.exports = function (app) {
-    const objRepo = {};
+    const objRepo = {
+        PlaceModel: PlaceModel,
+        SettModel: SettModel
+    };
 
     app.get('/place/create',
         renderMW(objRepo, 'place/new_place'));
     app.post('/place/create',
         savePlaceMW(objRepo),
-        redirectMW(objRepo, '/'));
+        redirectMW(objRepo));
     app.get('/place/modify/:placeId',
         getPlaceMW(objRepo),
         renderMW(objRepo, 'place/new_place'));
     app.post('/place/modify/:placeId',
         getPlaceMW(objRepo),
         savePlaceMW(objRepo),
-        redirectMW(objRepo, '/'));
+        redirectMW(objRepo));
     app.get('/place/delete/:placeId',
         getPlaceMW(objRepo),
         delPlaceMW(objRepo),
-        redirectMW(objRepo, '/'));
+        redirectMW(objRepo));
     app.get('/place/stats/:placeId',
         getPlaceMW(objRepo),
         getSettsMW(objRepo),
@@ -52,7 +58,7 @@ module.exports = function (app) {
     app.post('/sett/:placeId/create',
         getPlaceMW(objRepo),
         saveSettMW(objRepo),
-        redirectMW(objRepo, '/sett/:placeId'));
+        redirectMW(objRepo));
     app.get('/sett/:placeId/modify/:settId',
         getPlaceMW(objRepo),
         getSettMW(objRepo),
@@ -61,12 +67,12 @@ module.exports = function (app) {
         getPlaceMW(objRepo),
         getSettMW(objRepo),
         saveSettMW(objRepo),
-        redirectMW(objRepo, '/sett/:placeId'));
+        redirectMW(objRepo));
     app.get('/sett/:placeId/delete/:settId',
         getPlaceMW(objRepo),
         getSettMW(objRepo),
         delSettMW(objRepo),
-        redirectMW(objRepo, '/sett/:placeId'));
+        redirectMW(objRepo));
 
     app.get('/',
         getPlacesMW(objRepo),

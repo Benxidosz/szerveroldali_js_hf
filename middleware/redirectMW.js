@@ -4,8 +4,11 @@
  * @param pathName
  * @returns {(function(*, *, *): void)|*}
  */
-module.exports = function (objRepo, pathName) {
+module.exports = function (objRepo) {
     return function (req, res, next) {
-        res.redirect(pathName);
+        if (typeof res.locals.pathName === "undefined") {
+            res.locals.pathName = '/'
+        }
+        res.redirect(res.locals.pathName);
     };
 };

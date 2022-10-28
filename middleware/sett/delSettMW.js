@@ -6,6 +6,15 @@
  */
 module.exports = function (objRepo) {
     return function (req, res, next) {
-        next();
+        if (typeof res.locals.sett === 'undefined') {
+            return next();
+        }
+        res.locals.sett.remove(err => {
+            if (err) {
+                return next(err);
+            }
+            res.locals.pathName = `/sett/${res.locals.place._id}`
+            return next();
+        });
     };
 };
