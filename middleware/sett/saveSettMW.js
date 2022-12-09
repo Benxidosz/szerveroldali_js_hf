@@ -35,7 +35,16 @@ module.exports = function (objRepo) {
         res.locals.pathName = `/sett/${res.locals.place._id}`
 
         res.locals.sett.save(err => {
-            return next(err);
+            if (err) {
+                next(err);
+            }
+            res.locals.place._setts.push(res.locals.sett._id)
+            res.locals.place.save(err => {
+                if (err) {
+                    next(err);
+                }
+                next();
+            })
         });
     };
 };

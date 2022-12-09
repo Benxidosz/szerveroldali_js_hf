@@ -1,11 +1,21 @@
 <%- include('../header') -%>
-  <h1>Statistics of Adam's room</h1>
-  <p>Number of Sets: 2</p>
-  <p>Number of full Sets: 1</p>
+  <h1>Statistics of <%= place.name %></h1>
+  <p>Number of Sets: <%= place._setts.length %></p>
+  <p>Number of full Sets: <%= completeSetts %></p>
   <p>Need:</p>
   <ul>
-    <li>5 cups</li>
-    <li>2 balls</li>
+    <li><%= missing.cups %> cups</li>
+      <ul>
+        <% Object.keys(missing.typeMap).forEach( (type) => { %>
+          <li><%= missing.typeMap[type].sum %> of <%= type %> cups</li>
+            <ul>
+              <% Object.keys(missing.typeMap[type].colorMap).forEach( (color) => { %>
+                <li><%= missing.typeMap[type].colorMap[color] %> of <%= color %> cups</li>
+              <% }); %>
+            </ul>
+        <% }); %>
+      </ul>
+    <li><%= missing.balls %> balls</li>
   </ul>
   <button type="button" class="btn btn-outline-primary" onclick="location.href='/'">Back to Places</button>
 <%- include('../footer') -%>

@@ -14,7 +14,7 @@ module.exports = function (objRepo) {
             return next();
         }
 
-        SettModel.findOne({ _place: res.locals.place._id, id: req.params.id }, (err, sett) => {
+        SettModel.findOne({ _place: res.locals.place._id, _id: req.params.settId }, (err, sett) => {
             if (err) {
                 return next(err);
             }

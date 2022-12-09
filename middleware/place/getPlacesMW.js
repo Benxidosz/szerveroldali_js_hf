@@ -10,12 +10,15 @@ module.exports = function (objRepo) {
     const PlaceModel = requireOption(objRepo, 'PlaceModel');
 
     return function (req, res, next) {
-        PlaceModel.find({}, (err, places) => {
-            if (err) {
-                return next(err);
-            }
-            res.locals.places = places;
-            return next();
-        });
+        PlaceModel
+            .find({})
+            .populate('_setts')
+            .exec((err, places) => {
+                if (err) {
+                    return next(err);
+                }
+                res.locals.places = places;
+                return next();
+            });
     };
 };

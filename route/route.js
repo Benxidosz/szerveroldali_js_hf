@@ -5,12 +5,14 @@ const getPlacesMW = require('../middleware/place/getPlacesMW');
 const getPlaceMW = require('../middleware/place/getPlaceMW');
 const savePlaceMW = require('../middleware/place/savePlaceMW');
 const delPlaceMW = require('../middleware/place/delPlaceMW');
+const calculateStatisticsMW = require('../middleware/place/calculateStatisticsMW');
 
 const getSettsMW = require('../middleware/sett/getSettsMW');
 const checkSettsMW = require('../middleware/sett/checkSettsMW');
 const saveSettMW = require('../middleware/sett/saveSettMW');
 const getSettMW = require('../middleware/sett/getSettMW');
 const delSettMW = require('../middleware/sett/delSettMW');
+const completeSettMW = require('../middleware/sett/completeSettMW');
 
 const PlaceModel = require('../models/place');
 const SettModel = require('../models/sett');
@@ -22,7 +24,11 @@ const SettModel = require('../models/sett');
 module.exports = function (app) {
     const objRepo = {
         PlaceModel: PlaceModel,
-        SettModel: SettModel
+        SettModel: SettModel,
+        CompleteSettRequirements: {
+            cups: 22,
+            balls: 2
+        }
     };
 
     app.get('/place/create',
@@ -45,6 +51,7 @@ module.exports = function (app) {
         getPlaceMW(objRepo),
         getSettsMW(objRepo),
         checkSettsMW(objRepo),
+        calculateStatisticsMW(objRepo),
         renderMW(objRepo, 'place/stats'));
 
     app.get('/sett/:placeId',
@@ -72,6 +79,11 @@ module.exports = function (app) {
         getPlaceMW(objRepo),
         getSettMW(objRepo),
         delSettMW(objRepo),
+        redirectMW(objRepo));
+    app.get('/sett/:placeId/complete/:settId',
+        getPlaceMW(objRepo),
+        getSettMW(objRepo),
+        completeSettMW(objRepo),
         redirectMW(objRepo));
 
     app.get('/',
