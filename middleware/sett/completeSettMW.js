@@ -6,7 +6,6 @@ const requireOption = require('../requireOption');
  * @returns {(function(*, *, *): void)|*}
  */
 module.exports = function (objRepo) {
-    const SettModel = requireOption(objRepo, 'SettModel');
     const requirements = requireOption(objRepo, "CompleteSettRequirements")
 
     return function (req, res, next) {
